@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body style="margin: 0;">
+
+<canvas id="myCanvas" width="400" height="400"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+let r1 = 10;
+let d1 = 0.5;
+let c1 = "red";
+let b1 = 1;
+
+let r2 = 100;
+let d2 = 0.6;
+let c2 = "blue";
+let b2 = 2.5;
+
+let r3 = 199;
+let d3 = 0.7;
+let c3 = "green";
+let b3 = 4;
+
+
+
+function circle(radius,color,border){
+ctx.beginPath();
+ctx.strokeStyle = color;
+ctx.arc(200,200,radius,0,2*Math.PI);
+ctx.stroke();
+
+
+//sides
+ctx.beginPath()
+ctx.moveTo(0+border,200-radius);
+ctx.lineTo(0+border,200+radius);
+ctx.stroke();
+
+ctx.beginPath()
+ctx.moveTo(400-border,200-radius);
+ctx.lineTo(400-border,200+radius);
+ctx.stroke();
+
+
+ctx.beginPath()
+ctx.moveTo(200-radius,0+border);
+ctx.lineTo(200+radius,0+border);
+ctx.stroke();
+
+ctx.beginPath()
+ctx.moveTo(200-radius,400-border);
+ctx.lineTo(200+radius,400-border);
+ctx.stroke();
+
+//crosses
+
+
+//from left to right
+//upp
+ctx.beginPath()
+ctx.moveTo(0+border,200+radius);
+ctx.lineTo(400-border,200-radius);
+ctx.stroke();
+
+//down
+ctx.beginPath()
+ctx.moveTo(0+border,200-radius);
+ctx.lineTo(400-border,200+radius);
+ctx.stroke();
+
+//leftish vert
+ctx.beginPath()
+ctx.moveTo(200+radius,0+border);
+ctx.lineTo(200-radius,400-border);
+ctx.stroke();
+//rightish vert
+ctx.beginPath()
+ctx.moveTo(200-radius,0+border);
+ctx.lineTo(200+radius,400-border);
+ctx.stroke();
+}
+
+
+function funnyR(){
+requestAnimationFrame(funnyR);
+ctx.clearRect(0,0,400,400);
+
+//1
+circle(r1, c1, b1);
+
+
+
+
+
+//2
+circle(r2, c2, b2);
+
+//3
+circle(r3, c3, b3);
+
+r1 += d1;
+if (r1 <= 10 || r1 >= 200){ d1 = -d1};
+
+
+r2 += d2;
+if (r2 <= 10 || r2 >= 200){ d2 = -d2};
+
+
+r3 += d3;
+if (r3 <= 10 || r3 >= 200){ d3 = -d3};
+
+
+}
+
+
+funnyR();
+
+
+</script> 
+
+</body>
+</html>
